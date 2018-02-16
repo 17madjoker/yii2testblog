@@ -105,4 +105,15 @@ class Article extends \yii\db\ActiveRecord
         $this->deleteImage();
         return parent::beforeDelete();
     }
+
+    public function getCategory()
+    {
+        return $this->hasOne(Category::className(), ['id' => 'category_id']);
+    }
+
+    public function saveCategory($category_id)
+    {
+        $category = Category::findOne($category_id);
+        $this->link('category',$category);
+    }
 }
