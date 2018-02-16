@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+//use phpDocumentor\Reflection\DocBlock\Tag;
 use Yii;
 
 /**
@@ -67,18 +68,18 @@ class Article extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getArticleTags()
-    {
-        return $this->hasMany(ArticleTag::className(), ['article_id' => 'id']);
-    }
+//    public function getArticleTags()
+//    {
+//        return $this->hasMany(ArticleTag::className(), ['article_id' => 'id']);
+//    }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getComments()
-    {
-        return $this->hasMany(Comment::className(), ['article_id' => 'id']);
-    }
+//    public function getComments()
+//    {
+//        return $this->hasMany(Comment::className(), ['article_id' => 'id']);
+//    }
 
     public function saveImage($filename) {
         $this->image = $filename;
@@ -119,5 +120,11 @@ class Article extends \yii\db\ActiveRecord
             $this->link('category',$category);
             return true;
         }
+    }
+
+    public function getTags()
+    {
+        return $this->hasMany(Tag::className(), ['id' => 'tag_id'])
+            ->viaTable('article_tag', ['article_id' => 'id']);
     }
 }

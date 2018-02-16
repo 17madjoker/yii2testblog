@@ -12,6 +12,7 @@ use yii\filters\VerbFilter;
 use app\models\ImageUpload;
 use yii\web\UploadedFile;
 use yii\helpers\ArrayHelper;
+use app\models\Tag;
 
 /**
  * ArticleController implements the CRUD actions for Article model.
@@ -158,5 +159,12 @@ class ArticleController extends Controller
             'selectedCategory'=>$selectedCategory,
             'categories'=>$categories,
         ]);
+    }
+
+    public function actionSetTags($id)
+    {
+        $tag = Tag::findOne(1);
+        echo '<pre>';
+        print_r($tag->articles);
     }
 }

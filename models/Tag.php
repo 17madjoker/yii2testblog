@@ -4,6 +4,7 @@ namespace app\models;
 
 use Yii;
 
+
 /**
  * This is the model class for table "tag".
  *
@@ -46,8 +47,15 @@ class Tag extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getArticleTags()
+//    public function getArticleTags()
+//    {
+//        return $this->hasMany(ArticleTag::className(), ['tag_id' => 'id']);
+//    }
+
+    public function getArticles()
     {
-        return $this->hasMany(ArticleTag::className(), ['tag_id' => 'id']);
+        return $this->hasMany(Article::className(), ['id' => 'article_id'])
+            ->viaTable('article_tag', ['tag_id' => 'id']);
     }
+
 }
