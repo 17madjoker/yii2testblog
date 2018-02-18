@@ -1,3 +1,5 @@
+/* Установки от Yii2 */
+
 html,
 body {
     height: 100%;
@@ -113,3 +115,49 @@ a.desc:after {
 .nav > li > form > button.logout:focus {
     outline: none;
 }
+
+
+/* Мои стили */
+.article-main {
+    /*border: 1px solid black;*/
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+.article-title,
+.article-description,
+.article-content,
+.category-title
+{
+    border: 1px solid #BDBDBD;
+    border-radius: 5px;
+    margin: 10px;
+    line-height: 2;
+    padding-left: 10px;
+    padding-top: 10px;
+}
+
+.article-content {
+    background-color: #FAFAFA;
+}
+
+.article-description,
+.category-title {
+    background-color: #F5F5F5;
+}
+
+.article-title {
+    background-color: #EEEEEE;
+}
+
+.article-image {
+    text-align: center;
+}
+
+.article-info {
+    margin: 10px;
+    line-height: 2;
+    padding-left: 10px;
+}
+
+

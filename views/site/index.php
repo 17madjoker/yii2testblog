@@ -1,53 +1,45 @@
 <?php
 
-/* @var $this yii\web\View */
+use yii\widgets\LinkPager;
 
-$this->title = 'My Yii Application';
 ?>
-<div class="site-index">
 
-    <div class="jumbotron">
-        <h1>Congratulations!</h1>
-
-        <p class="lead">You have successfully created your Yii-powered application.</p>
-
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
-    </div>
-
-    <div class="body-content">
-
-        <div class="row">
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
-            </div>
+<div class="container">
+    <?php foreach ($articles as $data): ?>
+    <div class="row article-main">
+        <div class="row article-image">
+            <img src="<?=$data->getImage()?>" alt="" >
         </div>
-
+        <div class="row article-title">
+            <p><strong>Заголовок:</strong></p>
+            <p><?=$data['title']?></p>
+        </div>
+        <div class="row category-title">
+            <p><strong>Категория:</strong></p>
+            <p><a href="" class="btn btn-default"><?=$data->category->title;?></a></p>
+        </div>
+        <div class="row article-description">
+            <p><strong>Описание:</strong></p>
+            <p><?=$data['description']?></p>
+        </div>
+        <div class="row article-content">
+            <p class="text-justify"><p><strong>Текст:</strong></p>
+            <p><?=$data['content']?></p></p>
+        </div>
+        <div class="row article-info">
+            <div class="col-md-6">Дата: <?=$data['date']?></div>
+            <div class="col-md-6"><img src="/eye.png" alt="" width="25" height="25">
+                Просмотры:<?=(int)$data['viewed']?></div>
+        </div>
     </div>
+    <?php endforeach; ?>
+
+
+
+
+
+    <?php
+    echo LinkPager::widget([
+        'pagination' => $pagination,
+    ]); ?>
 </div>
