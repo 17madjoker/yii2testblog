@@ -3,7 +3,6 @@
 html,
 body {
     height: 100%;
-    background-color:#F5F5F5;
 }
 
 .wrap {
@@ -137,7 +136,7 @@ a.desc:after {
     line-height: 2;
     padding-left: 10px;
     padding-top: 10px;
-    background-color: #FAFAFA;
+    /*background-color: #FAFAFA;*/
 }
 
 .article-image {

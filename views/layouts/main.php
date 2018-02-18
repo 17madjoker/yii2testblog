@@ -27,7 +27,7 @@ AppAsset::register($this);
 <?php $this->beginBody() ?>
 
 <div class="container">
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default" style="background-color: white;">
     <div class="container-fluid">
         <div class="navbar-header">
             <a class="navbar-brand" href="/">Yii2Blog</a>

@@ -1,6 +1,7 @@
 <?php
 
 use yii\widgets\LinkPager;
+use yii\helpers\Url;
 
 ?>
 
@@ -11,15 +12,18 @@ use yii\widgets\LinkPager;
             <?php foreach ($articles as $data): ?>
                 <div class="row article-main">
                     <div class="row article-image">
-                        <img src="<?=$data->getImage()?>" alt="" >
+                        <a href="<?=Url::toRoute(['site/view','id'=>$data->id])?>">
+                            <img src="<?=$data->getImage()?>" alt="" ></a>
                     </div>
                     <div class="row article-title">
                         <p><strong>Заголовок:</strong></p>
-                        <p><?=$data['title']?></p>
+                        <p><a href="<?=Url::toRoute(['site/view','id'=>$data->id])?>">
+                                <?=$data['title']?></a></p>
                     </div>
                     <div class="row category-title">
                         <p><strong>Категория:</strong></p>
-                        <p><a href="" class="btn btn-default"><?=$data->category->title;?></a></p>
+                        <p><a href="<?=Url::toRoute(['site/category','id'=>$data->category->id])?>">
+                                <?=$data->category->title;?></a></p>
                     </div>
                     <div class="row article-description">
                         <p><strong>Описание:</strong></p>
@@ -51,7 +55,7 @@ use yii\widgets\LinkPager;
                         <img src="<?=$populardata->getImage()?>" alt="" height="100" width="100">
                     </div>
                     <div class="row">
-                        <a href=""><?=$populardata['title']?></a>
+                        <a href="<?=Url::toRoute(['site/view','id'=>$populardata->id])?>"><?=$populardata['title']?></a>
                     </div>
                     <div class="row">
                         <span><?=$populardata['date']?></span>
@@ -68,7 +72,8 @@ use yii\widgets\LinkPager;
                                 <img src="<?=$recentdata->getImage()?>" alt="" height="50" width="50">
                             </div>
                             <div class="col-md-8">
-                                <p><?=$recentdata['title']?></p>
+                                <p><a href="<?=Url::toRoute(['site/view','id'=>$recentdata->id])?>">
+                                    <?=$recentdata['title']?></a></p>
                                 <span><?=$recentdata['date']?></span>
                             </div>
                         </div>
@@ -80,7 +85,8 @@ use yii\widgets\LinkPager;
                 <div class="row">
                     <?php foreach($category as $allcategory): ?>
                         <div class="row article-categories">
-                            <div class="col-md-8"><a href=""><?=$allcategory['title']?></a></div>
+                            <div class="col-md-8"><a href="<?=Url::toRoute(['site/category','id'=>$allcategory->id])?>">
+                                    <?=$allcategory['title']?></a></div>
                             <div class="col-md-4"><?=$allcategory->getArticleCount()?></div>
                         </div>
                     <?php endforeach; ?>

@@ -66,7 +66,7 @@ class SiteController extends Controller
     {
 //        $model = new Article();
 //        $data = $model->getAll();
-        $data = Article::getAll(1);
+        $data = Article::getAll(2);
         $articles = $data['articles'];
         $pagination = $data['pagination'];
         $popular = Article::getPopular();
@@ -141,13 +141,34 @@ class SiteController extends Controller
         return $this->render('about');
     }
 
-    public function actionView()
+    public function actionView($id)
     {
-        return $this->render('single');
+        $article = Article::findOne($id);
+        $popular = Article::getPopular();
+        $last = Article::getLast();
+        $category = Category::getAllCategories();
+        return $this->render('single',[
+            'article'=>$article,
+            'popular' => $popular,
+            'last' => $last,
+            'category' => $category,
+        ]);
     }
 
-    public function actionCategory()
+    public function actionCategory($id)
     {
-        return $this->render('category');
+        $data = Category::getArticlesOneCategory(1,$id);
+        $articles = $data['articles'];
+        $pagination = $data['pagination'];
+        $popular = Article::getPopular();
+        $last = Article::getLast();
+        $category = Category::getAllCategories();
+        return $this->render('category',[
+            'articles' => $articles,
+            'pagination' => $pagination,
+            'popular' => $popular,
+            'last' => $last,
+            'category' => $category,
+        ]);
     }
 }
