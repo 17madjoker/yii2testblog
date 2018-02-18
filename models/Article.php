@@ -5,6 +5,7 @@ namespace app\models;
 //use phpDocumentor\Reflection\DocBlock\Tag;
 use Yii;
 use yii\helpers\ArrayHelper;
+use yii\data\Pagination;
 
 /**
  * This is the model class for table "article".
@@ -152,5 +153,27 @@ class Article extends \yii\db\ActiveRecord
     public function clearCurrentTags()
     {
         ArticleTag::deleteAll(['article_id'=>$this->id]);
+    }
+
+    public static function getAll($pagesize =1) {
+        $query = Article::find();
+        $count = $query->count();
+        $pagination = new Pagination(['totalCount' => $count, 'pageSize'=>$pagesize]);
+        $articles = $query->offset($pagination->offset)
+            ->limit($pagination->limit)
+            ->all();
+        $data['pagination'] = $pagination;
+        $data['articles'] = $articles;
+        return $data;
+    }
+
+    public static function getPopular()
+    {
+        return Article::find()->orderBy('viewed DESC')->limit(3)->all();
+    }
+
+    public static function getLast()
+    {
+        return Article::find()->orderBy('date DESC')->limit(3)->all();
     }
 }

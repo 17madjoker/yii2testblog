@@ -3,6 +3,7 @@
 html,
 body {
     height: 100%;
+    background-color:#F5F5F5;
 }
 
 .wrap {
@@ -127,37 +128,28 @@ a.desc:after {
 .article-title,
 .article-description,
 .article-content,
-.category-title
+.category-title,
+.article-info
 {
-    border: 1px solid #BDBDBD;
-    border-radius: 5px;
-    margin: 10px;
+    /*border: 1px solid #BDBDBD;*/
+    /*border-radius: 5px;*/
+    /*margin: 10px;*/
     line-height: 2;
     padding-left: 10px;
     padding-top: 10px;
-}
-
-.article-content {
     background-color: #FAFAFA;
-}
-
-.article-description,
-.category-title {
-    background-color: #F5F5F5;
-}
-
-.article-title {
-    background-color: #EEEEEE;
 }
 
 .article-image {
     text-align: center;
 }
 
-.article-info {
-    margin: 10px;
-    line-height: 2;
-    padding-left: 10px;
+.article-popular>div,
+.article-recent>div,
+.article-categories>div {
+    text-align: center;
 }
+
+
 
 

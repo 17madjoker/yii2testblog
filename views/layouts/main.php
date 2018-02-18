@@ -48,19 +48,9 @@ AppAsset::register($this);
 <!-- end main content-->
 
 
-<footer>
-    <hr>
+<footer class="footer">
     <div class="container">
-    <div class="row justify-content-md-center">
-            <div class="col col-lg-2">
-                <p>It's a empty footer</p>
-            </div>
-            <div class="col-12 col-md-auto">
-                <p>Powered by: <img src="php.png" alt="" width="50" height="50"></p>
-            </div>
-            <div class="col col-lg-2">
-                <p>All</p>
-            </div>
+        <p class="text-muted">Footer content</p>
     </div>
 </footer>
 
