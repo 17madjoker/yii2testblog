@@ -9,6 +9,7 @@ namespace app\controllers;
 use yii\web\Controller;
 use Yii;
 use app\models\User;
+use app\models\LoginForm;
 
 class AuthController extends Controller
 {
@@ -22,7 +23,7 @@ class AuthController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->goBack();
         }
-        return $this->render('login', [
+        return $this->render('/site/login', [
             'model' => $model,
         ]);
     }

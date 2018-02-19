@@ -9,6 +9,7 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
+use yii\helpers\Url;
 
 AppAsset::register($this);
 ?>
@@ -36,8 +37,17 @@ AppAsset::register($this);
             <li><a href="/">Home</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Login</a></li>
-            <li><a href="#">Registration</a></li>
+            <?php if(Yii::$app->user->isGuest): ?>
+                <li><a href="<?= Url::toRoute(['auth/login']) ?>">Login</a></li>
+                <li><a href="<?= Url::toRoute(['auth/singup']) ?>">Registration</a></li>
+            <?php else: ?>
+                <?= Html::beginForm(['auth/logout'],'post')
+                .Html::submitButton(
+                    'Logout ('.Yii::$app->user->identity->name.')',
+                    ['class' => 'btn btn-link']
+                )
+                .Html::endForm() ?>
+            <?php endif; ?>
         </ul>
     </div>
 </nav>
