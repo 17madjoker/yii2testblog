@@ -35,6 +35,48 @@ use yii\helpers\Url;
                         <hr>
                     </div>
                 </div>
+                <div class="row">
+                <?php if(!empty($comments)): ?>
+                    <?php foreach($comments as $data): ?>
+                    <div class="row" style="
+                    margin-top:15px;
+                    margin-bottom: 15px;
+                    padding: 15px;
+                    border: 1px solid #EEEEEE">
+                        <div class="col-md-4">
+                            <div class="row">
+                                <img src="<?= $data->user->image; ?>" alt="" width="100" height="100">
+                            </div>
+                            <div class="row" style="margin-top: 20px"><strong>Дата:</strong>
+                                <?= $data->date ?></div>
+                        </div>
+                        <div class="col-md-8">
+                            <strong><p class="text-center"><?= $data->user->name; ?></p></strong>
+                            <p><?= $data->text ?></p>
+                        </div>
+                    </div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+                </div>
+
+                <?php if(!Yii::$app->user->isGuest): ?>
+                <div class="row" style="margin-bottom: 20px;">
+                    <?php $form = \yii\widgets\ActiveForm::begin([
+                        'action'=>['site/comment','id'=>$article->id],
+                        'options' => ['class'=>'contact-form','role'=>'form']
+                    ]) ?>
+                    <?= $form->field($commentForm,'comment')->
+                    textarea(['class'=>'form-control'])?>
+                    <button type="submit" class="btn">Отправить</button>
+                    <?php \yii\widgets\ActiveForm::end() ?>
+                    <?php if( Yii::$app->session->hasFlash('success') ): ?>
+                        <hr>
+                        <div class="row alert alert-success alert-dismissible" role="alert">
+                            <?php echo Yii::$app->session->getFlash('success'); ?>
+                        </div>
+                    <?php endif;?>
+                </div>
+                <?php endif; ?>
 
         </div>
         <div class="col-lg-4">

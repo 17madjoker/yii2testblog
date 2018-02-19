@@ -176,4 +176,20 @@ class Article extends \yii\db\ActiveRecord
     {
         return Article::find()->orderBy('date DESC')->limit(3)->all();
     }
+
+    public function getComments()
+    {
+        return $this->hasMany(Comment::className(), ['article_id' => 'id']);
+    }
+
+    public function getAppliedComments()
+    {
+        return $this->getComments()->where(['status'=>1])->all();
+    }
+
+    public function viewCounter()
+    {
+        $this->viewed += 1;
+        return $this->save(false);
+    }
 }

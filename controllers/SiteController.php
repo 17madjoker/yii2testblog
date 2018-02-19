@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\Category;
+use app\models\CommentForm;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -120,11 +121,16 @@ class SiteController extends Controller
         $popular = Article::getPopular();
         $last = Article::getLast();
         $category = Category::getAllCategories();
+        $comments = $article->getAppliedComments();
+        $commentForm = new CommentForm();
+        $article->viewCounter();
         return $this->render('single',[
             'article'=>$article,
             'popular' => $popular,
             'last' => $last,
             'category' => $category,
+            'comments' => $comments,
+            'commentForm' => $commentForm,
         ]);
     }
 
@@ -143,5 +149,19 @@ class SiteController extends Controller
             'last' => $last,
             'category' => $category,
         ]);
+    }
+
+    public function actionComment($id)
+    {
+        $model = new CommentForm();
+        if (Yii::$app->request->isPost)
+        {
+            $model->load(Yii::$app->request->post());
+            if($model->saveComment($id))
+            {
+                Yii::$app->getSession()->setFlash('success','Спасибо за комментарий! Он скоро будет добавлен!)');
+                return $this->redirect(['site/view','id'=>$id]);
+            }
+        }
     }
 }
