@@ -6,6 +6,7 @@
  * Time: 15:15
  */
 namespace app\controllers;
+use app\models\SingupForm;
 use yii\web\Controller;
 use Yii;
 use app\models\User;
@@ -23,7 +24,7 @@ class AuthController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->goBack();
         }
-        return $this->render('/site/login', [
+        return $this->render('login', [
             'model' => $model,
         ]);
     }
@@ -37,6 +38,22 @@ class AuthController extends Controller
     {
         Yii::$app->user->logout();
         return $this->goHome();
+    }
+
+    public function actionSingup()
+    {
+        $model = new SingupForm();
+        if (Yii::$app->request->isPost)
+        {
+            $model->load(Yii::$app->request->post());
+            if ($model->singup())
+            {
+                return $this->redirect(['auth/login']);
+            }
+        }
+        return $this->render('singup',[
+            'model'=>$model
+        ]);
     }
 
     public function actionTest()
