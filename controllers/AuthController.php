@@ -63,4 +63,13 @@ class AuthController extends Controller
         Yii::$app->user->logout();
         var_dump(Yii::$app->user->isGuest);
     }
+
+    public function actionLoginVk($uid,$first_name,$photo)
+    {
+        $user = new User();
+        if ($user->saveFromVk($uid,$first_name,$photo))
+        {
+            return $this->redirect(['site/index']);
+        }
+    }
 }
