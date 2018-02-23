@@ -52,7 +52,7 @@ use yii\helpers\Url;
                 <div class="row article-popular">
                 <?php foreach($popular as $populardata): ?>
                     <div class="row">
-                        <img src="<?=$populardata->getImage()?>" alt="" height="100" width="100">
+                        <img src="<?=$populardata->getImage()?>" alt="" height="100" width="100" class='img-responsive'>
                     </div>
                     <div class="row">
                         <a href="<?=Url::toRoute(['site/view','id'=>$populardata->id])?>"><?=$populardata['title']?></a>
@@ -60,6 +60,7 @@ use yii\helpers\Url;
                     <div class="row">
                         <span><?=$populardata['date']?></span>
                     </div>
+                    <hr>
                 <?php endforeach; ?>
                 </div>
             </div>
@@ -69,7 +70,7 @@ use yii\helpers\Url;
                     <?php foreach($last as $recentdata): ?>
                         <div class="row">
                             <div class="col-md-4">
-                                <img src="<?=$recentdata->getImage()?>" alt="" height="50" width="50">
+                                <img src="<?=$recentdata->getImage()?>" alt="" height="50" width="50" class='img-responsive'>
                             </div>
                             <div class="col-md-8">
                                 <p><a href="<?=Url::toRoute(['site/view','id'=>$recentdata->id])?>">

@@ -10,6 +10,7 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 use yii\helpers\Url;
+use app\models\User;
 
 AppAsset::register($this);
 ?>
@@ -41,13 +42,11 @@ AppAsset::register($this);
                 <li><a href="<?= Url::toRoute(['auth/login']) ?>">Login</a></li>
                 <li><a href="<?= Url::toRoute(['auth/singup']) ?>">Registration</a></li>
             <?php else: ?>
-                <?= Html::beginForm(['auth/logout'],'post')
-                .Html::submitButton(
-                    'Logout ('.Yii::$app->user->identity->name.')',
-                    ['class' => 'btn btn-link']
-                )
-                .Html::endForm() ?>
+                <li><a href="<?= Url::toRoute(['auth/logout']) ?>">Выйти (<?=Yii::$app->user->identity->name?>)</a></li>
             <?php endif; ?>
+            <?php if(Yii::$app->user->identity->isAdmin == 1): ?>
+                <li><a href="<?= Url::toRoute(['admin/article']) ?>">Admin panel</a></li>
+            <?php endif ?>
         </ul>
     </div>
 </nav>

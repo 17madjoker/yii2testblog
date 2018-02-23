@@ -88,7 +88,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         // TODO: Implement getAuthKey() method.
     }
 
-    public function validateAuthKey($authKey)
+    public function validateAuthKey($id)
     {
         // TODO: Implement validateAuthKey() method.
     }
@@ -133,4 +133,5 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     {
         return $this->photo;
     }
+
 }
