@@ -149,6 +149,10 @@ a.desc:after {
     text-align: center;
 }
 
+img
+{
+    overflow: hidden;
+}
 
 
 
